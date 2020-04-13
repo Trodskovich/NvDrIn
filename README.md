@@ -3,4 +3,5 @@ This is a Python3 Script To check for latest Nvidia Driver form NVIDIA Website a
 and install or update the driver
 
 > Note :Requires python3-newt and newt preinstalled
+
 > Run at your own Risk
