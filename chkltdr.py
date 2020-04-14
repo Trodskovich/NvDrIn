@@ -10,8 +10,11 @@
 
 
 import subprocess
+import os
 import urllib.request
 from snack import SnackScreen, GridForm, ButtonBar, Textbox, CheckboxTree,Checkbox,snackArgs
+
+
 
 # Clear the screen
 subprocess.call("clear", shell=True)
@@ -21,6 +24,8 @@ LatestFile=""
 LatestHeader=""
 DownloadFlag=1
 SymlinkFlag=1
+path=os.getcwd()
+FList=[]
 
 # class for the colors to use in printing messages
 class blkColors:
@@ -45,6 +50,10 @@ def welcome():
         3,
         "To check for latest Nvidia Driver form NVIDIA Website, download and optionaly create a symlink to the latest File",0,1
     )
+    for File in os.listdir(path):
+        if File.find('.run')>0 and os.path.isfile(path+File):
+            FList.append(File)
+            FList.sort()
     FileText = urllib.request.urlopen(NvLtTxtURL).read().decode('utf-8')
     for i in range(0, len(FileText)):
         if FileText[i]==' ':
@@ -56,28 +65,33 @@ def welcome():
     
     NvLtDrvURL = NvLtDrvURL + LatestHeader + "/" + LatestFile  
     
-    tbLatest = Textbox(
+  
+    tbLatestL = Textbox(
+        110,
+        2,
+        "Latest Local Version: " + FList[-1],0,1
+    ) 
+    tbLatestR = Textbox(
         110,
         4,
-        "Latest Version: " + LatestHeader + "\nLatest File: "+ LatestFile + "\nLatest Driver URL: "+ NvLtDrvURL,0,1
-    )
-    cbDowload= Checkbox(
-        "Download the Latest Driver",
-        10,
-    )
-    cbSymlink= Checkbox(
-        "Create / Update Symlink",
-        10,
+        "Latest Remote Version: " + LatestFile + "\nLatest Driver URL: "+ NvLtDrvURL,0,1
     )
     
-    
-    g = GridForm(screen, "chkltdr (NvDrIn) - by Trodskovich", 1, 7)
+    if LatestFile>FList[-1]:
+        cbDowload= Checkbox("Download the Latest Driver",1,)
+        cbSymlink= Checkbox("Create / Update Symlink",1,)
+    else:
+        cbDowload= Checkbox("Download the Latest Driver",0,)
+        cbSymlink= Checkbox("Create / Update Symlink",0,)
+
+    g = GridForm(screen, "chkltdr (NvDrIn) - by Trodskovich", 1, 8)
 
     g.add(tbTittle, 0, 2)
-    g.add(tbLatest, 0, 3, growx=1)
-    g.add(cbDowload, 0, 4, growx=1)
-    g.add(cbSymlink, 0, 5, growx=1)
-    g.add(bb, 0, 6, growx=1)
+    g.add(tbLatestL, 0, 3, growx=1)
+    g.add(tbLatestR, 0, 4, growx=1)
+    g.add(cbDowload, 0, 5, growx=1)
+    g.add(cbSymlink, 0, 6, growx=1)
+    g.add(bb, 0, 7, growx=1)
     result = g.runOnce()
     
     
@@ -138,7 +152,7 @@ def process():
 def init():
     chkwel = welcome()
     if chkwel == "cancel":
-        print(blkColors.Error + "\nNvidia Latest Driver Check Cancelled\n" + + blkColors.EndC)
+        print(blkColors.Error + "\nNvidia Latest Driver Check Cancelled\n" +  blkColors.EndC)
         quit()
     else:
         process()
