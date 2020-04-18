@@ -51,7 +51,7 @@ def welcome():
         "To check for latest Nvidia Driver form NVIDIA Website, download and optionaly create a symlink to the latest File",0,1
     )
     for File in os.listdir(path):
-        if File.find('.run')>0 and os.path.isfile(path+File):
+        if File.find('.run')>0 and os.path.isfile(path+ "/" +File):
             FList.append(File)
             FList.sort()
     FileText = urllib.request.urlopen(NvLtTxtURL).read().decode('utf-8')
