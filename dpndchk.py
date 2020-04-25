@@ -69,7 +69,7 @@ if ("i " in patternchk or "i+ " in patternchk ):
     print(blkColors.Blue + "'dkms' Installed" + blkColors.EndC)
 else:
     print(blkColors.Blue + "'dkms' Not Installed now Installing..." + blkColors.EndC)
-    subprocess.call(["sudo zypper in python3-newt"], shell=True)
+    subprocess.call(["sudo zypper in dkms"], shell=True)
 
 
 print(blkColors.Blue + "\nDependency Check Complete.\n" + blkColors.EndC)
