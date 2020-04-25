@@ -24,8 +24,10 @@ class blkColors:
     Undeline = "\033[4m"
     
 # Clear the screen
-subprocess.call("clear", shell=True)
+#subprocess.call("clear", shell=True)
 
-print(blkColors.Blue + "\nUpdating Initramfs, Grub and rebooting...\n" + blkColors.EndC)
-subprocess.call(["sudo mkinitrd ; grub2-mkconfig ; reboot"], shell=True)
-print(blkColors.Blue + "\nPost Install Script Complete.\n" + blkColors.EndC)
+def post():
+
+    print(blkColors.Blue + "\nUpdating Initramfs, Grub and rebooting...\n" + blkColors.EndC)
+    #subprocess.call(["sudo mkinitrd ; grub2-mkconfig ; reboot"], shell=True)
+    print(blkColors.Blue + "\nPost Install Script Complete.\n" + blkColors.EndC)

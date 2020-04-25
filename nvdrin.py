@@ -31,8 +31,15 @@ class blkColors:
     
 # Clear the screen
 #subprocess.call("clear", shell=True)
-
 print(blkColors.Blue + "\nNvidia Driver Istallation begins...\n" + blkColors.EndC)
 print(blkColors.Blue + "\nGetting Necessary Parameters...\n" + blkColors.EndC)
-subprocess.call(["sudo mkinitrd ; grub2-mkconfig ; reboot"], shell=True)
+
+dpndchk.chk()
+preinstall.pre()
+chkltdr.chk()
+nvinstall.ins()
+postinstall.post()
+
+
+subprocess.call(["sudo "], shell=True)
 print(blkColors.Blue + "\nNvidia Install Script Complete.\n" + blkColors.EndC)

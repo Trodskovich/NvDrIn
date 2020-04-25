@@ -26,21 +26,25 @@ class blkColors:
 # Clear the screen
 #subprocess.call("clear", shell=True)
 
-print(blkColors.Blue + "\nChanging Directory...\n" + blkColors.EndC)
-subprocess.call(["cd /root/bin"], shell=True)
+def pre():
+    
+    print(blkColors.Blue + "\nStarting Pre-Install Script...\n" + blkColors.EndC)
 
-print(blkColors.Blue + "\nStoping  Display Manager...\n" + blkColors.EndC)
-subprocess.call(["sudo rcxdm stop"], shell=True)
+    print(blkColors.Blue + "\nChanging Directory...\n" + blkColors.EndC)
+    subprocess.call(["cd /root/bin"], shell=True)
+
+    print(blkColors.Blue + "\nStoping  Display Manager...\n" + blkColors.EndC)
+    #subprocess.call(["sudo rcxdm stop"], shell=True)
 
 
-servicechk=subprocess.getoutput(["sudo systemctl status dkms"])
-print(blkColors.Blue + servicechk + blkColors.EndC)
+    servicechk=subprocess.getoutput(["sudo systemctl status dkms"])
+    print(blkColors.Blue + servicechk + blkColors.EndC)
 
-if ("dkms.service; enabled;" in servicechk):
-    print(blkColors.Blue + "'dkms' enabled" + blkColors.EndC)
-else:
-    print(blkColors.Blue + "'dkms' Not enabled now enabling and starting..." + blkColors.EndC)
-    subprocess.call(["sudo systemctl enable dkms"], shell=True)
-    subprocess.call(["sudo systemctl start dkms"], shell=True)
+    if ("dkms.service; enabled;" in servicechk):
+        print(blkColors.Blue + "'dkms' enabled" + blkColors.EndC)
+    else:
+        print(blkColors.Blue + "'dkms' Not enabled now enabling and starting..." + blkColors.EndC)
+        subprocess.call(["sudo systemctl enable dkms"], shell=True)
+        subprocess.call(["sudo systemctl start dkms"], shell=True)
 
-print(blkColors.Blue + "\nPre-Install Script Complete...\n" + blkColors.EndC)
+    print(blkColors.Blue + "\nPre-Install Script Complete...\n" + blkColors.EndC)

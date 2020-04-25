@@ -27,16 +27,18 @@ class blkColors:
 # Clear the screen
 #subprocess.call("clear", shell=True)
 
-# Create snapshot just in case
-subprocess.call(["sudo snapper create --type pre --print-number --description 'Before Nvidia Driver Install'"], shell=True)
+def ins():
 
-print(blkColors.Blue + "\nChanging Directory...\n" + blkColors.EndC)
-subprocess.call(["cd /root/bin"], shell=True)
+    # Create snapshot just in case
+    subprocess.call(["sudo snapper create --type pre --print-number --description 'Before Nvidia Driver Install'"], shell=True)
 
-print(blkColors.Blue + "\nStoping  Display Manager...\n" + blkColors.EndC)
-subprocess.call(["sudo rcxdm stop"], shell=True)
+    print(blkColors.Blue + "\nChanging Directory...\n" + blkColors.EndC)
+    #subprocess.call(["cd /root/bin"], shell=True)
 
-print(blkColors.Blue + "\nRe-Installing Nvidia Driver...\n" + blkColors.EndC)
-subprocess.call(["sudo NVIDIA-Linux-x86_64-Latest.run -Xq --dkms --ui=none"], shell=True)
+    print(blkColors.Blue + "\nStoping  Display Manager...\n" + blkColors.EndC)
+    #subprocess.call(["sudo rcxdm stop"], shell=True)
 
-print(blkColors.Blue + "\nInstalling Nvidia Drivern Complete.\n" + blkColors.EndC)
+    print(blkColors.Blue + "\nRe-Installing Nvidia Driver...\n" + blkColors.EndC)
+    #subprocess.call(["sudo NVIDIA-Linux-x86_64-Latest.run -Xq --dkms --ui=none"], shell=True)
+
+    print(blkColors.Blue + "\nInstalling Nvidia Driver Complete.\n" + blkColors.EndC)

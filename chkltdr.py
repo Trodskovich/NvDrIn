@@ -150,7 +150,7 @@ def process():
 
 
 # to run Program
-def init():
+def chk():
     chkwel = welcome()
     if chkwel == "cancel":
         print(blkColors.Error + "\nNvidia Latest Driver Check Cancelled\n" +  blkColors.EndC)
@@ -158,4 +158,3 @@ def init():
     else:
         process()
             
-init()
