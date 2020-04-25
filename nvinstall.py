@@ -1,8 +1,9 @@
+
 # -----------------------------------------------------------------------------------------------------------------------------
 # NvDrIN v1=0.1
-# dpndchk
-# Dependency Checker
-# To check for Necessary Dependencies before  Install Commands-Install Nvidia Driver (The Hard Way).
+# NvInstall
+# Check Latest Driver
+# To Install Nvidia Driver (The Hard Way).
 # Part of NvDrIn (Nvidia Driver Installer) Project
 # Authour: Trodskovich
 # requires python3-newt and newt preinstalled
@@ -26,8 +27,16 @@ class blkColors:
 # Clear the screen
 #subprocess.call("clear", shell=True)
 
+# Create snapshot just in case
+subprocess.call(["sudo snapper create --type pre --print-number --description 'Before Nvidia Driver Install'"], shell=True)
 
+print(blkColors.Blue + "\nChanging Directory...\n" + blkColors.EndC)
+subprocess.call(["cd /root/bin"], shell=True)
 
-print(blkColors.Blue + "\ncheck for Necessary Dependencies...\n" + blkColors.EndC)
-subprocess.call(["sudo zypper in -t pattern devel_C_C++ devel_kernel"], shell=True)
-print(blkColors.Blue + "\nDependency Check Complete.\n" + blkColors.EndC)
+print(blkColors.Blue + "\nStoping  Display Manager...\n" + blkColors.EndC)
+subprocess.call(["sudo rcxdm stop"], shell=True)
+
+print(blkColors.Blue + "\nRe-Installing Nvidia Driver...\n" + blkColors.EndC)
+subprocess.call(["sudo NVIDIA-Linux-x86_64-Latest.run -Xq --dkms --ui=none"], shell=True)
+
+print(blkColors.Blue + "\nInstalling Nvidia Drivern Complete.\n" + blkColors.EndC)

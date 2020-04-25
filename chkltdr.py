@@ -1,8 +1,9 @@
 # -----------------------------------------------------------------------------------------------------------------------------
 # NvDrIN v1=0.1
 # chkltdr
-# Part of NvDrIn (Nvidia Driver Installer) Project
+# Check Latest Driver
 # To check for latest Nvidia Driver form NVIDIA Website and Download if Latest.
+# Part of NvDrIn (Nvidia Driver Installer) Project
 # Authour: Trodskovich
 # requires python3-newt and newt preinstalled
 # Run at your own Risk

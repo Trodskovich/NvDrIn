@@ -1,8 +1,8 @@
 # -----------------------------------------------------------------------------------------------------------------------------
 # NvDrIN v1=0.1
-# dpndchk
-# Dependency Checker
-# To check for Necessary Dependencies before  Install Commands-Install Nvidia Driver (The Hard Way).
+# postinchk
+# Post Install Checker
+# To check for driver and other modules after  Install Commands-Install Nvidia Driver (The Hard Way).
 # Part of NvDrIn (Nvidia Driver Installer) Project
 # Authour: Trodskovich
 # requires python3-newt and newt preinstalled
@@ -28,6 +28,6 @@ class blkColors:
 
 
 
-print(blkColors.Blue + "\ncheck for Necessary Dependencies...\n" + blkColors.EndC)
+print(blkColors.Blue + "\ncheck drivers and other Modules Post Install...\n" + blkColors.EndC)
 subprocess.call(["sudo zypper in -t pattern devel_C_C++ devel_kernel"], shell=True)
 print(blkColors.Blue + "\nDependency Check Complete.\n" + blkColors.EndC)
