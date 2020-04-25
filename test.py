@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------------------------------------------------------
 # NvDrIN v1=0.1
-# dpndchk
-# Dependency Checker
+# test
+# Test Code (WIP)
 # To check for Necessary Dependencies before  Install Commands-Install Nvidia Driver (The Hard Way).
 # Part of NvDrIn (Nvidia Driver Installer) Project
 # Authour: Trodskovich
@@ -9,7 +9,7 @@
 # Run at your own Risk
 # -----------------------------------------------------------------------------------------------------------------------------
 
-import subprocess
+import subprocess,sys
 #from snack import SnackScreen, GridForm, ButtonBar, Textbox, CheckboxTree, snackArgs
 
 # class for the colors to use in printing messages
@@ -29,47 +29,12 @@ class blkColors:
 print(blkColors.Blue + "\ncheck for Necessary Dependencies...\n" + blkColors.EndC)
 
 print(blkColors.Blue + "\ncheck for Installed Nvidia Graphics Card and Driver...\n" + blkColors.EndC)
-subprocess.call(["sudo lspci | grep VGA"], shell=True)
-subprocess.call(["sudo lscpu | grep Arch"], shell=True)
 
-
-patternchk=subprocess.getoutput(["sudo zypper se  python3-newt"])
-print(blkColors.Blue + patternchk + blkColors.EndC)
-
-if ("i " in patternchk or "i+ " in patternchk ):
-    print(blkColors.Blue + "'python3-newt' Installed" + blkColors.EndC)
+if "win" in str(sys.argv):
+    
+    print ("found")
 else:
-    print(blkColors.Blue + "'python3-newt' Not Installed now Installing..." + blkColors.EndC)
-    subprocess.call(["sudo zypper in python3-newt"], shell=True)
+    print ("not found")
 
-patternchk=subprocess.getoutput(["sudo zypper se -t pattern devel_C_C++"])
-print(blkColors.Blue + patternchk + blkColors.EndC)
-
-if ("i " in patternchk or "i+ " in patternchk ):
-    print(blkColors.Blue + "'pattern devel_C_C++' Installed" + blkColors.EndC)
-else:
-    print(blkColors.Blue + "'pattern devel_C_C++' Not Installed now Installing..." + blkColors.EndC)
-    subprocess.call(["sudo zypper in -t pattern devel_C_C++"], shell=True)
-   
-
-patternchk=subprocess.getoutput(["sudo zypper se -t pattern devel_kernel"])
-print(blkColors.Blue + patternchk + blkColors.EndC)
-
-if ("i " in patternchk or "i+ " in patternchk ):
-    print(blkColors.Blue + "'pattern devel_kernel' Installed" + blkColors.EndC)
-else:
-    print(blkColors.Blue + "'pattern devel_Kernel' Not Installed now Installing..." + blkColors.EndC)
-    subprocess.call(["sudo zypper in -t pattern devel_kernel"], shell=True)
-
-
-patternchk=subprocess.getoutput(["sudo zypper se dkms"])
-print(blkColors.Blue + patternchk + blkColors.EndC)
-
-if ("i " in patternchk or "i+ " in patternchk ):
-    print(blkColors.Blue + "'dkms' Installed" + blkColors.EndC)
-else:
-    print(blkColors.Blue + "'dkms' Not Installed now Installing..." + blkColors.EndC)
-    subprocess.call(["sudo zypper in dkms"], shell=True)
-
-
-print(blkColors.Blue + "\nDependency Check Complete.\n" + blkColors.EndC)
+for args in sys.argv:
+    print ( str(args))
