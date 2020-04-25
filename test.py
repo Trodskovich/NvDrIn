@@ -26,6 +26,8 @@ class blkColors:
 # Clear the screen
 #subprocess.call("clear", shell=True)
 
+print(blkColors.Blue + "\ncheck for Necessary Dependencies...\n" + blkColors.EndC)
+
 print(blkColors.Blue + "\ncheck for Installed Nvidia Graphics Card and Driver...\n" + blkColors.EndC)
 subprocess.call(["sudo lspci | grep VGA"], shell=True)
 subprocess.call(["sudo lscpu | grep Arch"], shell=True)
@@ -70,17 +72,4 @@ else:
     subprocess.call(["sudo zypper in python3-newt"], shell=True)
 
 
-servicechk=subprocess.getoutput(["sudo systemctl status dkms"])
-print(blkColors.Blue + servicechk + blkColors.EndC)
-
-if ("dkms.service; enabled;" in servicechk):
-    print(blkColors.Blue + "'dkms' enabled" + blkColors.EndC)
-else:
-    print(blkColors.Blue + "'dkms' Not enabled now enabling and starting..." + blkColors.EndC)
-    subprocess.call(["sudo systemctl enable dkms"], shell=True)
-    subprocess.call(["sudo systemctl start dkms"], shell=True)
-
-
-#print(blkColors.Blue + "\ncheck for Necessary Dependencies...\n" + blkColors.EndC)
-#subprocess.call(["sudo zypper in -t pattern devel_C_C++ devel_kernel"], shell=True)
-#print(blkColors.Blue + "\nDependency Check Complete.\n" + blkColors.EndC)
+print(blkColors.Blue + "\nDependency Check Complete.\n" + blkColors.EndC)
