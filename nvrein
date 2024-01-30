@@ -1,0 +1,20 @@
+#Authour: Trodskovich
+
+#All Rights Reserved
+#
+echo -e "\n\e[33m\e[1m| -------------------------------------------------------------------------------------------------------- |\e[2m\e[39m\n"
+echo -e "\n\e[37m\e[1m|                                       -NVIDIA Re-Install Script-                                         |\e[2m\e[39m\n"
+echo -e "\n\e[33m\e[1m| -------------------------------------------------------------------------------------------------------- |\e[2m\e[39m\n"
+
+echo -e "\n\e[33m\e[1m| Changing Directory |\e[2m\e[39m\n"
+cd /root/bin
+echo -e "\n\e[33m\e[1m| Stoping  Display Manager |\e[2m\e[39m\n"
+rcxdm stop
+echo -e "\n\e[33m\e[1m| Re-Installing Nvidia Driver |\e[2m\e[39m\n"
+NVIDIA-Linux-x86_64-Latest.run -Xq --dkms --ui=none
+echo -e "\n\e[33m\e[1m| Updating Initramfs |\e[2m\e[39m\n"
+dracut -f --regenerate-all
+echo -e "\n\e[33m\e[1m| Updating Grub |\e[2m\e[39m\n"
+grub2-mkconfig
+echo -e "\n\e[33m\e[1m| Finised Updating, now rebooting |\e[2m\e[39m\n"
+reboot
